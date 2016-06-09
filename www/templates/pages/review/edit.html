@@ -1,0 +1,335 @@
+<div ng-cloak>
+    <form name="reviewForm" ng-controller="reviewController as reviewCtrl" >
+	    <input type="hidden" ng-model="reviewCtrl.review._id" >
+	    <input type="hidden" ng-model="reviewCtrl.review._rev" >
+		<md-content layout-padding layout-margin class="md-inline-form">
+			<div layout="row">
+				<md-input-container flex>
+				  <label>Degustatore</label>
+				  <input type="text" ng-model="reviewCtrl.review.author"  ng-blur="reviewCtrl.addReview()">
+				</md-input-container>
+				<md-datepicker ng-model="reviewCtrl.review.submissionDate" md-placeholder="Data - ora" ng-blur="reviewCtrl.addReview()">
+		        </md-datepicker>
+		    </div>
+		    <div layout="row" layout-wrap>
+		        <md-input-container flex-order-xs="1" flex-xs="66" flex-gt-xs="35">
+		          <label>Birrificio</label>
+		          <input type="text" ng-model="reviewCtrl.review.brewery"  ng-blur="reviewCtrl.addReview()">
+		        </md-input-container>
+		        <md-input-container flex-order-xs="3" flex-xs="66" flex-gt-xs="35" >
+		          <label>Birra</label>
+		          <input type="text" ng-model="reviewCtrl.review.beerName" ng-blur="reviewCtrl.addReview()">
+		        </md-input-container>        
+		       	<md-input-container flex-order-xs="2" flex-xs="33" flex-gt-xs="20">
+				  <label>Stile</label>
+				  <input type="text" ng-model="reviewCtrl.review.beerStyle"  ng-blur="reviewCtrl.addReview()">
+				</md-input-container>
+		       	<md-input-container flex-order-xs="4" flex-xs="33" flex-gt-xs="10" >
+				  <label>Temperatura di servizio</label>
+				  <input type="text" ng-model="reviewCtrl.review.beerTemperature" ng-blur="reviewCtrl.addReview()" >
+				</md-input-container>
+			</div>
+		</md-content>
+		<md-content layout-padding layout-margin class="md-inline-form">
+		  <div layout="row">
+			<h2>Esame Visivo</h2>
+		  </div>
+		  <div layout="row" layout-wrap>
+			<md-input-container flex-xs="33" flex-gt-xs="20">
+			  <label>Colore schiuma</label>
+			  <md-select ng-model="reviewCtrl.review.visual.foamColor" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Bianca</md-option>
+			    <md-option ng-value="1" >Beige chiaro</md-option>
+			    <md-option ng-value="2" >Beige</md-option>
+			    <md-option ng-value="3" >Beige carico</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="33" flex-gt-xs="20">
+			  <label>Finezza schiuma</label>
+			  <md-select ng-model="reviewCtrl.review.visual.foamFineness" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Grossolana</md-option>
+			    <md-option ng-value="1" >Abbastanza fine</md-option>
+			    <md-option ng-value="2" >Fine</md-option>
+			    <md-option ng-value="3" >Molto fine</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="33" flex-gt-xs="20">
+			  <label>Persistenza schiuma</label>
+			  <md-select ng-model="reviewCtrl.review.visual.foamPersistences" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Assente</md-option>
+			    <md-option ng-value="1" >Poco persistente</md-option>
+			    <md-option ng-value="2" >Abbastanza persistente</md-option>
+			    <md-option ng-value="3" >Persistente</md-option>
+			    <md-option ng-value="4" >Molto persistente</md-option>
+			  </md-select>
+			</md-input-container>
+		
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Colore birra</label>
+			  <md-select ng-model="reviewCtrl.review.visual.beerColor" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Giallo paglierino</md-option>
+			    <md-option ng-value="1" >Giallo dorato</md-option>
+			    <md-option ng-value="2" >Giallo ambrato</md-option>
+			    <md-option ng-value="3" >Ambrato (pi&ugrave; arancione)</md-option>
+			    <md-option ng-value="4" >Ramato (pi&ugrave; rosso)</md-option>
+			    <md-option ng-value="5" >Marrone</md-option>
+			    <md-option ng-value="6" >Marrone scuro</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Limpidezza</label>
+			  <md-select ng-model="reviewCtrl.review.visual.beerClearness" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Opalescente</md-option>
+			    <md-option ng-value="1" >Velato</md-option>
+			    <md-option ng-value="2" >Abbastanza limpido</md-option>
+			    <md-option ng-value="3" >Limpido</md-option>
+			    <md-option ng-value="4" >Cristallino</md-option>
+			  </md-select>
+			</md-input-container>
+		</div>
+		<div layout="row" >
+			<md-input-container flex-xs="100" flex-gt-xs="70" >
+			  <label>Osservazioni</label>
+			  <textarea type="text" ng-model="reviewCtrl.review.visual.notes" ng-blur="reviewCtrl.addReview()"></textarea>
+			</md-input-container>
+		</div>
+		<div layout="row">
+			<h2>Esame Olfattivo</h2>
+		</div>
+		<div layout="row" layout-wrap>
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Intensit&agrave;</label>
+			  <md-select ng-model="reviewCtrl.review.olfactory.intensity" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Carente</md-option>
+			    <md-option ng-value="1" >Poco intenso</md-option>
+			    <md-option ng-value="2" >Abbastanza intenso</md-option>
+			    <md-option ng-value="3" >Intenso</md-option>
+			    <md-option ng-value="4" >Molto intenso</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Persistenza</label>
+			  <md-select ng-model="reviewCtrl.review.olfactory.persistences" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Carente</md-option>
+			    <md-option ng-value="1" >Poco peristente</md-option>
+			    <md-option ng-value="2" >Abbastanza peristente</md-option>
+			    <md-option ng-value="3" >Peristente</md-option>
+			    <md-option ng-value="4" >Molto peristente</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Complessit&agrave;</label>
+			  <md-select ng-model="reviewCtrl.review.olfactory.complexity" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Poco complessa</md-option>
+			    <md-option ng-value="1" >Abbastanza complessa</md-option>
+			    <md-option ng-value="2" >Complessa</md-option>
+			    <md-option ng-value="3" >Molto complessa</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Qualit&agrave;</label>
+			  <md-select ng-model="reviewCtrl.review.olfactory.grade" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Poco fine</md-option>
+			    <md-option ng-value="1" >Comune</md-option>
+			    <md-option ng-value="2" >Abbastanza fine</md-option>
+			    <md-option ng-value="3" >Fine</md-option>
+			    <md-option ng-value="4" >Eccellente</md-option>
+			  </md-select>
+			</md-input-container>
+		</div>
+		<div layout="row" >
+			<md-input-container flex-xs="100" flex-gt-xs="70" >
+			  <label>Descrizione aromi e osservazioni</label>
+			  <textarea type="text" ng-model="reviewCtrl.review.olfactory.notes" ng-blur="reviewCtrl.addReview()"></textarea>
+			</md-input-container>
+		</div>
+		<div layout="row" >
+			<h2>Esame Gustativo</h2>
+        </div>
+        <div layout="row" >			
+			<md-input-container flex-xs="33" flex-gt-xs="20">
+			  <label>Intensit&agrave;</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.intensity" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Carente</md-option>
+			    <md-option ng-value="1" >Poco intenso</md-option>
+			    <md-option ng-value="2" >Abbastanza intenso</md-option>
+			    <md-option ng-value="3" >Intenso</md-option>
+			    <md-option ng-value="4" >Molto intenso</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="33" flex-gt-xs="20">
+			  <label>Persistenza</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.persistences" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Carente</md-option>
+			    <md-option ng-value="1" >Poco peristente</md-option>
+			    <md-option ng-value="2" >Abbastanza peristente</md-option>
+			    <md-option ng-value="3" >Peristente</md-option>
+			    <md-option ng-value="4" >Molto peristente</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex="33" flex-gt-xs="20">
+			  <label>Corpo</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.body" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Watery</md-option>
+			    <md-option ng-value="1" >Magro</md-option>
+			    <md-option ng-value="2" >Debole</md-option>
+			    <md-option ng-value="3" >Abbastanza corposo</md-option>
+			    <md-option ng-value="4" >Corposo</md-option>
+			    <md-option ng-value="5" >Pesante</md-option>
+			  </md-select>
+			</md-input-container>
+		</div>
+		<div layout="row" >	
+			<h3>Gusti</h3>
+		</div>
+		<div layout="row" layout-wrap>	
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Dolcezza</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.sweet" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Secco</md-option>
+			    <md-option ng-value="1" >Abboccato</md-option>
+			    <md-option ng-value="2" >Amabile</md-option>
+			    <md-option ng-value="3" >Dolce</md-option>
+			    <md-option ng-value="4" >Stucchevole</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Amarezza</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.bitter" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Assente</md-option>
+			    <md-option ng-value="1" >Poco amaro</md-option>
+			    <md-option ng-value="2" >Abbastanza amaro</md-option>
+			    <md-option ng-value="3" >Amaro</md-option>
+			    <md-option ng-value="4" >Molto amaro</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Acido</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.acid" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Assente</md-option>
+			    <md-option ng-value="1" >Acidulo</md-option>
+			    <md-option ng-value="2" >Abbastanza acido</md-option>
+			    <md-option ng-value="3" >Acido</md-option>
+			    <md-option ng-value="4" >Molto acido</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Salato</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.salty" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Assente</md-option>
+			    <md-option ng-value="1" >Poco salato</md-option>
+			    <md-option ng-value="2" >Abbastanza salato</md-option>
+			    <md-option ng-value="3" >Salato</md-option>
+			    <md-option ng-value="4" >Molto salato</md-option>
+			  </md-select>
+			</md-input-container>
+		</div>
+		<div layout="row" layout-wrap>	
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Alcoli</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.alcohols" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Leggero</md-option>
+			    <md-option ng-value="1" >Poco caldo</md-option>
+			    <md-option ng-value="2" >Abbastanza caldo</md-option>
+			    <md-option ng-value="3" >Caldo</md-option>
+			    <md-option ng-value="4" >Alcolico</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Polialcoli</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.polyalcohols" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Spigoloso</md-option>
+			    <md-option ng-value="1" >Poco morbido</md-option>
+			    <md-option ng-value="2" >Abbastanza morbido</md-option>
+			    <md-option ng-value="3" >Morbido</md-option>
+			    <md-option ng-value="4" >Pastoso</md-option>
+			  </md-select>
+			</md-input-container>
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Equilibrio</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.balance" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Poco equilibrato</md-option>
+			    <md-option ng-value="1" >Abbastanza equilibrato</md-option>
+			    <md-option ng-value="2" >Equilibrato</md-option>
+			  </md-select>
+			</md-input-container>		
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Qualit&agrave;</label>
+			  <md-select ng-model="reviewCtrl.review.gustatory.grade" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Poco fine</md-option>
+			    <md-option ng-value="1" >Comune</md-option>
+			    <md-option ng-value="2" >Abbastanza</md-option>
+			    <md-option ng-value="3" >Fine</md-option>
+			    <md-option ng-value="4" >Eccellente</md-option>
+			  </md-select>
+			</md-input-container>
+		</div>
+		<div layout="row" >
+			<md-input-container flex-xs="100" flex-gt-xs="70" >
+			  <label>Descrizione aromi ed eventuali osservazioni retrolfattive</label>
+			  <textarea type="text" ng-model="reviewCtrl.review.gustatory.notes" ng-blur="reviewCtrl.addReview()"></textarea>
+			</md-input-container>
+		</div>
+		<div layout="row" >
+			<h2>Considerazioni finali</h2>
+		</div>
+		<div layout="row" >
+			<md-input-container flex-xs="50" flex-gt-xs="20">
+			  <label>Armonia</label>
+			  <md-select ng-model="reviewCtrl.review.harmony" required ng-blur="reviewCtrl.addReview()">
+			    <md-option ng-value="0" >Poco armonico</md-option>
+			    <md-option ng-value="1" >Abbastanza armonico</md-option>
+			    <md-option ng-value="2" >Armonico</md-option>
+			  </md-select>
+			</md-input-container>		
+			
+			<md-input-container flex-xs="50" flex-gt-xs="20" >
+			  <label>Stato evolutivo</label>
+			  <md-select ng-model="reviewCtrl.review.evolutionaryStatus" ng-blur="reviewCtrl.addReview()" >
+			    <md-option ng-value="0" >Immaturo</md-option>
+			    <md-option ng-value="1" >Giovane</md-option>
+			    <md-option ng-value="2" >Pronto</md-option>
+			    <md-option ng-value="3" >Maturo</md-option>
+			    <md-option ng-value="4" >Vecchio</md-option>
+			  </md-select>
+			</md-input-container>
+		</div>		
+		<div layout="row" >	
+			<md-input-container flex-xs="100" flex-gt-xs="70" >
+			  <label>Abbinamento cibo</label>
+			  <textarea type="text" ng-model="reviewCtrl.review.foodPairing" ng-blur="reviewCtrl.addReview()"></textarea>
+			</md-input-container>		
+		</div>
+		<div layout="row" >
+			<md-input-container flex-xs="100" flex-gt-xs="70">
+			  <label>Note</label>
+			  <textarea type="text" ng-model="reviewCtrl.review.notes" ng-blur="reviewCtrl.addReview()"></textarea>
+			</md-input-container>
+		</div>	
+		</md-content>
+		
+		<!--  <md-button class="md-raised md-primary" ng-click ="reviewCtrl.addReview()">Salva</md-button> -->
+	
+	</form>
+	
+
+      <md-fab-speed-dial md-direction="up" class="md-fling md-fab-bottom-right positionFixed">
+        <md-fab-trigger>
+          <md-button aria-label="menu" class="md-fab md-warn">
+          	<md-tooltip md-direction="left" md-visible="tooltipVisible">Aggiungi foto</md-tooltip>
+            <ng-md-icon icon="add_a_photo" style="fill: white" size="24"></ng-md-icon>
+          </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+          <md-button aria-label="Camera" class="md-fab md-raised md-mini md-secondary">
+          	<md-tooltip md-direction="left" md-visible="tooltipVisible">Fotocamera</md-tooltip>
+            <ng-md-icon icon="photo_camera" style="fill: gray" size="24"></ng-md-icon>
+          </md-button>
+          <md-button aria-label="Gallery" class="md-fab md-raised md-mini md-secondary">
+            <md-tooltip md-direction="left" md-visible="tooltipVisible">Galleria</md-tooltip>
+            <ng-md-icon icon="photo_library" style="fill: gray" size="24"></ng-md-icon>
+          </md-button>
+        </md-fab-actions>
+      </md-fab-speed-dial>
+
+</div>

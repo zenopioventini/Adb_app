@@ -1,0 +1,21 @@
+<div ng-cloak ng-controller="reviewListController as reviewListCtrl">
+    <md-button class="md-fab md-fab-bottom-right positionFixed" aria-label="Aggiungi degustazione" ng-click="reviewListCtrl.getReview()">
+        <ng-md-icon icon="add" style="fill: white" size="24"></ng-md-icon>
+    </md-button>
+	<md-list>
+		<md-list-item class="md-2-line md-offset" ng-repeat="review in reviewListCtrl.reviews" ng-click="reviewListCtrl.getReview(review.id)" layout="row" flex>
+			<div class="md-list-item-text" layout="column">
+				<h3><span ng-show="review.doc.submissionDate">Degustazione del: {{::review.doc.submissionDate | date : 'short'}}</span><span ng-hide="review.doc.submissionDate" class="ng-hide">Degustazione del: {{::review.id | date : 'short'}}</span></h3>
+				<p><span ng-show="review.doc.brewery">Marca {{::review.doc.brewery}}</span><span ng-show="review.doc.beerName"> {{::review.doc.beerName}}</span></p>
+			</div>
+				
+			<md-button class="md-secondary" ng-click="reviewListCtrl.deleteReview(review.id)" aria-label="Cancella" >
+				<ng-md-icon icon="delete" style="fill: lightgray" size="24" ></ng-md-icon>
+			</md-button>
+			
+		</md-list-item>
+		<md-list-item class="md-2-line md-offset">
+		      &nbsp;
+		</md-list-item>
+	</md-list>
+</div>
